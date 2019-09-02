@@ -15,5 +15,13 @@ class UserController extends Controller
         return view('users.show',compact('user'));
     }
 
+    public function store (Request $request){
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+    }
+
     
 }
