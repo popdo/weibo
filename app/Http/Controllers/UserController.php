@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\createUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -15,12 +16,13 @@ class UserController extends Controller
         return view('users.show',compact('user'));
     }
 
-    public function store (Request $request){
+    public function store (createUserRequest $request){
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
         ]);
+        return back();
     }
 
     
