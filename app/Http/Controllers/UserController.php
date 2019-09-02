@@ -17,12 +17,17 @@ class UserController extends Controller
     }
 
     public function store (createUserRequest $request){
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ]);
-        return back();
+        // 临时会话 session()->flash()仅在下次请求内有效，之后可以在其他地方使用session()->get('success')获取这条信息
+        session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
+
+        return redirect()->route('users.show', [$user]);
+        // 以上代码等同于：
+        // redirect()->route('users.show', [$user->id]);
     }
 
     

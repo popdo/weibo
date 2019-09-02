@@ -10,8 +10,9 @@
 <body>
 @include('layouts._header')
  <div class="container">
-     @yield('content')
-     @include('layouts._footer')
+    @include('shared._message')
+    @yield('content')
+    @include('layouts._footer')
 </div>
 @yield('script')
 </body>
