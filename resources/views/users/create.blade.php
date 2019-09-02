@@ -8,11 +8,7 @@
       <h5>注册</h5>
     </div>
     <div class="card-body">
-        @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            {{ $errors->first() }}
-        </div>
-        @endif
+        @include('shared._errors')
       <form method="POST" action="{{ route('users.store') }}">
         @csrf
           <div class="form-group">
