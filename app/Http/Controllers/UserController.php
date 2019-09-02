@@ -22,6 +22,10 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+        
+        // 注册完让用户自动登录
+        auth()->login($user);
+        
         // 临时会话 session()->flash()仅在下次请求内有效，之后可以在其他地方使用session()->get('success')获取这条信息
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
 
