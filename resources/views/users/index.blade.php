@@ -16,7 +16,16 @@
                 </a>
                 <div style="flex:1 0 auto">
                     <h6 class="title">{{ $user->name }}</h6>
-                    <p class="card-text"><small class="text-muted">{{ $user->created_at->diffForHuMans() }}</small></p>
+                    <div class="card-text">
+                        <small class="text-muted">{{ $user->created_at->diffForHuMans() }}</small>
+                        @can('destroy',$user)
+                        <form action="{{ route('users.destroy',$user) }}" method="post" style="float:right;">
+                            @csrf
+                            @method('delete')
+                            <button class="text-muted" style="background:#fff;border:none;">delete</button>
+                        </form>
+                        @endcan
+                    </div>
                 </div>
             </div>
         </div>

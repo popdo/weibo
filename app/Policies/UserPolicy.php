@@ -24,4 +24,9 @@ class UserPolicy
     public function update (User $currentUser,User $user){
         return $currentUser->id === $user->id;
     }
+
+    public function destroy (User $currentUser,User $user){
+        // 通过is_admin字段为true 判断是否为管理员 并且 当前用户等于受验证用户（既管理员不能删除自己）
+        return $currentUser->is_admin && $currentUser->id !== $user->id;
+    }
 }
