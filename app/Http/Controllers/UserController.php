@@ -9,6 +9,17 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [            
+            'except' => ['show', 'create', 'store','update']
+        ]);
+
+        // 只允许未登录用户访问
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
     public function create (){
         return view('users.create');
     }
@@ -36,10 +47,12 @@ class UserController extends Controller
     }
 
     public function edit (User $user){
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
     public function update (updateUserRequest $request,User $user){
+        $this->authorize('update', $user);
         $user->update([
             'name' => $request->name,
             'password' => $request->password ? bcrypt($request->password):$user->password
