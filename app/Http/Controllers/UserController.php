@@ -6,13 +6,14 @@ use App\Http\Requests\createUserRequest;
 use App\Http\Requests\updateUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', [            
-            'except' => ['show', 'create', 'store','update']
+            'except' => ['show', 'create', 'store','index']
         ]);
 
         // 只允许未登录用户访问
@@ -20,6 +21,12 @@ class UserController extends Controller
             'only' => ['create']
         ]);
     }
+
+    public function index (){
+        $users = User::paginate(9);
+        return view('users.index',compact('users'));
+    }
+
     public function create (){
         return view('users.create');
     }
@@ -34,7 +41,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
-        
+
         // 注册完让用户自动登录
         auth()->login($user);
 
@@ -47,12 +54,12 @@ class UserController extends Controller
     }
 
     public function edit (User $user){
-        $this->authorize('update', $user);
+        $this->authorize('update', $user); //只能进入自己的编辑页
         return view('users.edit', compact('user'));
     }
 
     public function update (updateUserRequest $request,User $user){
-        $this->authorize('update', $user);
+        $this->authorize('update', $user); //只能提交自己的编辑
         $user->update([
             'name' => $request->name,
             'password' => $request->password ? bcrypt($request->password):$user->password
