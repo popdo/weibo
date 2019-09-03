@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\createUserRequest;
+use App\Http\Requests\updateUserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -32,6 +33,19 @@ class UserController extends Controller
         return redirect()->route('users.show', [$user]);
         // 以上代码等同于：
         // redirect()->route('users.show', [$user->id]);
+    }
+
+    public function edit (User $user){
+        return view('users.edit', compact('user'));
+    }
+
+    public function update (updateUserRequest $request,User $user){
+        $user->update([
+            'name' => $request->name,
+            'password' => $request->password ? bcrypt($request->password):$user->password
+        ]);
+        session()->flash('success','个人信息更新成功');
+        return back();
     }
 
     

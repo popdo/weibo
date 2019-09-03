@@ -10647,6 +10647,7 @@ a.text-dark:focus {
 body {
   font-size: 14px;
   font-weight: normal;
+  background-color: #f7f9fb;
 }
 
 /* footer */
@@ -10701,5 +10702,20 @@ section.user_info h1 {
   float: left;
   max-width: 50px;
   border-radius: 50%;
+}
+
+.ibox {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.ibox .ibox-hd {
+  min-height: 48px;
+}
+
+.ibox .ibox-hd .title {
+  font-size: 14px;
+  font-weight: 600;
 }
 

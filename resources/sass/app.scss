@@ -8,6 +8,7 @@
 body {
     font-size: 14px;
     font-weight: normal;
+    background-color: #f7f9fb;
 }
 
 
@@ -61,3 +62,17 @@ section.user_info {
     max-width: 50px;
     border-radius: 50%;
   }
+
+.ibox{
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  .ibox-hd{
+    min-height: 48px;
+    .title{
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+}

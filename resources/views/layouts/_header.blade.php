@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+<nav class="navbar navbar-expand-lg mb-5" style="background:#fff;box-shadow: 0px 0px 5px 0px rgba(82,63,105,0.05);">
         <div class="container ">
           <a class="navbar-brand" href="{{ route('home') }}">Weibo App</a>
           <ul class="navbar-nav justify-content-end">
@@ -10,7 +10,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">个人中心</a>
-                  <a class="dropdown-item" href="#">编辑资料</a>
+                  <a class="dropdown-item" href="{{ route('users.edit',Auth::user()) }}">编辑资料</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" id="logout" href="#">
                     <form action="{{ route('logout') }}" method="POST">
