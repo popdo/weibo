@@ -1,4 +1,4 @@
-<li class="py-2 border-top">
+<li class="py-2 border-bottom">
     <div class="user-card">
         <a href="{{ route('users.show',$user->id) }}" class="u-face mr-2">
             <img width="50" height="50" src="{{ $user->gravatar(100) }}" alt="{{ $user->name }}" class="gravatar o"/>
