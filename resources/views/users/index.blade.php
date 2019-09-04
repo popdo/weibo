@@ -30,9 +30,11 @@
             </div>
         </div>
         @endforeach
-        @if (count($users))
-            {{ $users->links() }}
-        @endif
     </div>
+    @if (count($users))
+    <div class="ibox-ft mt-3 d-flex justify-content-center">
+        {{ $users->links() }}
+    </div>
+    @endif
 </div>
 @endsection

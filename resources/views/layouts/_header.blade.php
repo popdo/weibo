@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg mb-5 bg-light" style="background:#fff;">
+<nav class="navbar navbar-expand-lg mb-5" style="background:#fff;box-shadow: 0px 0px 5px 0px rgba(82,63,105,0.05);">
         <div class="container ">
           <a class="navbar-brand" href="{{ route('home') }}">Weibo App</a>
           <ul class="navbar-nav justify-content-end">
@@ -14,8 +14,8 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" id="logout" href="#">
                     <form action="{{ route('logout') }}" method="POST">
-                      {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
+                      @csrf
+                      @method('DELETE')
                       <button class="btn btn-block btn-danger" type="submit" name="button">退出</button>
                     </form>
                   </a>
@@ -24,6 +24,7 @@
             @else
               <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">帮助</a></li>
               <li class="nav-item" ><a class="nav-link" href="{{ route('login') }}">登录</a></li>
+              <li class="nav-item" ><a class="nav-link" href="{{ route('signup') }}">注册</a></li>
             @endif
           </ul>
         </div>
