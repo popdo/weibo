@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\createStatusRequest;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -20,7 +21,10 @@ class StatusController extends Controller
         return back();
     }
 
-    public function destroy($user){
-        //
+    public function destroy(Status $status){
+        $this->authorize('destroy',$status);
+        $status->delete();
+        session()->flash('success','删除成功!');
+        return back();
     }
 }
