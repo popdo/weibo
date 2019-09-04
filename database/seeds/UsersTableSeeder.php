@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();//先清空表
-        factory(User::class,30)->create();//再创建30个用户
+        factory(User::class,20)->create();//再创建30个用户
         // 对第一个用户进行修改
         User::find(1)->update([
             'name' => 'jim',

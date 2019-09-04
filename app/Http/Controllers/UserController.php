@@ -33,7 +33,8 @@ class UserController extends Controller
     }
 
     public function show (User $user){
-        return view('users.show',compact('user'));
+        $statuses = $user->statuses()->orderBy('created_at','desc')->paginate(20);
+        return view('users.show',compact('user','statuses'));
     }
 
     // 用户注册
@@ -112,5 +113,6 @@ class UserController extends Controller
         session()->flash('success','删除成功！');
         return back();
     }
+
     
 }
