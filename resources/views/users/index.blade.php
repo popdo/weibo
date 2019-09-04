@@ -10,9 +10,9 @@
     <div class="ibox-bd row">
         @foreach ($users as $user)
         <div class="col-4">
-            <div class="p-4 d-flex mb-4" style="border:1px solid #eee">
+            <div class="p-4 d-flex mb-4 border shadow-xs" style="border-color:#f1f1f1!important">
                 <a class="align-self-center mr-3 " href="{{ route('users.show',$user) }}" style="flex:0 0 auto">
-                    <img class="card-img-top img-thumbnail rounded" src="{{ $user->gravatar(50) }}" alt="{{ $user->name }}">
+                    <img class="o" src="{{ $user->gravatar(50) }}" alt="{{ $user->name }}">
                 </a>
                 <div style="flex:1 0 auto">
                     <h6 class="title">{{ $user->name }}</h6>
@@ -22,7 +22,7 @@
                         <form action="{{ route('users.destroy',$user) }}" method="post" style="float:right;">
                             @csrf
                             @method('delete')
-                            <button class="text-muted" style="background:#fff;border:none;">delete</button>
+                            <button class="text-muted btn-space">delete</button>
                         </form>
                         @endcan
                     </div>
@@ -32,7 +32,7 @@
         @endforeach
     </div>
     @if (count($users))
-    <div class="ibox-ft mt-3 d-flex justify-content-center">
+    <div class="ibox-ft mt-3 flex-x-c">
         {{ $users->links() }}
     </div>
     @endif

@@ -1,5 +1,6 @@
 @if (count($errors)>0)
-    <div class="alert alert-danger" role="alert">
+    <div class="msg is-danger my-2">
+        <i class="icon"></i>
         <ul>
             @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>

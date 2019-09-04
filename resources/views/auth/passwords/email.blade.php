@@ -3,10 +3,10 @@
 
 @section('content')
 <div class="col-md-8 offset-md-2">
-  <div class="card ">
-    <div class="card-header"><h5>重置密码</h5></div>
+  <div class="ibox mx-auto" style="max-width:400px">
+    <div class="ibox-hd mb-3 text-center"><h4>重置密码</h4></div>
 
-    <div class="card-body">
+    <div class="ibox-bd">
       @if (session('status'))
       <div class="alert alert-success">
         {{ session('status') }}
@@ -15,10 +15,9 @@
 
       <form class="" method="POST" action="{{ route('password.email') }}">
         @csrf
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-          <label for="email" class="form-control-label">邮箱地址：</label>
-
-          <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+        <div class="field{{ $errors->has('email') ? ' has-error' : '' }}">
+          <label for="email">邮箱地址：</label>
+          <input id="email" type="email" class="form-item" name="email" value="{{ old('email') }}" required>
 
           @if ($errors->has('email'))
             <span class="form-text text-danger">
@@ -27,8 +26,8 @@
           @endif
         </div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">
+        <div class="field">
+          <button type="submit" class="btn">
             发送密码重置邮件
           </button>
         </div>

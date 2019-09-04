@@ -12,31 +12,43 @@
                 <img class="img-thumbnail" src="{{ $user->gravatar(140) }}" alt="{{ $user->name }}" width="100" height="100">
             </div>
         </div>
-        <div class="col-10">
+        <div class="col-10 border-left">
             @include('shared._errors')
-            <form action="{{ route('users.update',$user->id) }}" method="post">
+            <form action="{{ route('users.update',$user->id) }}" method="post" class="x-form">
                 @csrf
                 @method('patch')
-                <div class="form-group">
-                    <label for="">名称</label>
-                    <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+                <div class="field">
+                    <label class="x-label" for="">名称：</label>
+                    <div class="field-bd">
+                        <input type="text" name="name" class="form-item" value="{{ $user->name }}">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">邮箱：</label>
-                    <input type="text" name="email" class="form-control" value="{{ $user->email }}" disabled>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">密码：</label>
-                    <input type="password" name="password" class="form-control" value="{{ old('password') }}">
-                </div>
-
-                <div class="form-group">
-                    <label for="password_confirmation">确认密码：</label>
-                    <input type="password" name="password_confirmation" class="form-control" value="{{ old('password_confirmation') }}">
+                <div class="field">
+                    <label class="x-label" for="email">邮箱：</label>
+                    <div class="field-bd">
+                        <input type="text" name="email" class="form-item" value="{{ $user->email }}" disabled>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">更新</button>
+                <div class="field">
+                    <label class="x-label" for="password">密码：</label>
+                    <div class="field-bd">
+                        <input type="password" name="password" class="form-item" value="{{ old('password') }}">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="x-label" for="password_confirmation">确认密码：</label>
+                    <div class="field-bd">
+                        <input type="password" name="password_confirmation" class="form-item" value="{{ old('password_confirmation') }}">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="x-label"></label>
+                    <div class="field-bd">
+                        <button type="submit" class="btn">提交更新</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
