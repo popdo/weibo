@@ -5,13 +5,20 @@
         </a>
         <div style="flex:1 0 auto">
             <h6 class="title">{{ $user->name }}</h6>
-            <div class="card-text">
-                <small class="text-muted">{{ $user->created_at->diffForHuMans() }}</small>
+            <div class="card-text flex-y-c">
+                <small class="text-muted mr-auto">{{ $user->created_at->diffForHuMans() }}</small>
+                @auth
+                @include('users._follow_btn',[
+                    'in_follow_btn' => 'is-success is-xs',
+                    'in_unfollow_btn' => 'is-default is-xs'
+                ])
+                @endauth
+
                 @can('destroy',$user)
-                <form action="{{ route('users.destroy',$user) }}" method="post" style="float:right;">
+                <form action="{{ route('users.destroy',$user->id) }}" method="post">
                     @csrf
-                    @method('delete')
-                    <button class="text-muted btn-space">delete</button>
+                    @method('DELETE')
+                    <button class="btn is-default is-xs ml-1">删除</button>
                 </form>
                 @endcan
             </div>
