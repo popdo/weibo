@@ -8,7 +8,7 @@
         </section>
 
         <section class="status_list">
-            @if ($feed_items->count()>0)
+            @if (count($feed_items)>0)
                 <ul>
                     @foreach ($feed_items as $status)
                         @include('statuses._status_loop', ['user' => $status->user])
@@ -16,7 +16,7 @@
                 </ul> 
                 {{ $feed_items->links() }}
             @else
-                <p>请开始你的表演……</p>
+                <p class="text-center mt-5">请开始你的表演……</p>
             @endif
         </section>
     </div>

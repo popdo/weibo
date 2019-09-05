@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
     <section class="user_info col-8 offset-md-2 text-center">
-        @include('shared._user_info', ['user' => $user])
+        @include('shared._user_info')
     </section>
     <section class="status col-8 offset-md-2">
         <ul class="list-unstyled">

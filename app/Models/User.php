@@ -58,9 +58,47 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Status');
     }
 
-    public function feed()
+    public function feed(){
+        return $this->statuses()->orderBy('created_at', 'desc');
+    }
+
+
+    // 多对多关系
+
+    // 用户粉丝列表 $user->followers()
+    public function followers(){
+        // 参数1: 一个用户拥有多个粉丝 (一个user拥有多个user)
+        // 参数2: 指定关联表名(不指定的话 系统会默认将两个模型_连接 自动起名为 user_user)
+        // 参数3: user_id 是定义在关联中的模型外键名 
+        // 参数4: follower_id 是要合并的模型外键名
+        return $this->belongsToMany(User::Class, 'followers', 'user_id', 'follower_id');
+    }
+
+    // 用户关注列表 $user->followings();
+    public function followings(){
+        return $this->belongsToMany(User::Class, 'followers', 'follower_id', 'user_id');
+    }
+
+    // 关注
+    public function follow($user_ids){
+        if ( ! is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+        $this->followings()->sync($user_ids, false);
+    }
+
+    // 取消关注
+    public function unfollow($user_ids){
+        if ( ! is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+        $this->followings()->detach($user_ids);
+    }
+
+    // 判断当前登录的用户 A 是否关注了用户 B
+    public function isFollowing($user_id)
     {
-        return $this->statuses()
-                    ->orderBy('created_at', 'desc');
+        // 用contains方法 判断用户 B 是否包含在用户 A 的关注人列表上即可
+        return $this->followings->contains($user_id);
     }
 }

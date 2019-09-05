@@ -4,7 +4,7 @@
             <img width="50" height="50" src="{{ $user->gravatar(100) }}" alt="{{ $user->name }}" class="gravatar o"/>
         </a>
         <div class="u-info pt-1 mr-auto">
-            <b class="name">jim</b>
+            <b class="name">{{ $user->name }}</b>
             <small> / {{ $status->created_at->diffForHumans() }}</small>
             <p class="mt-15">{{ $status->content }}</p>
         </div>
