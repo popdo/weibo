@@ -4,15 +4,21 @@
 <h2 class="mt-2 mb-5">{{ $user->name }}</h2>
 <div class="user_atten flex-xy-c mb-5">
     <dl class="item px-30">
-        <dt class="num">{{ count($user->followings) }}</dt>
+        <dt class="num">
+            <a href="{{ route('users.followings',$user->id) }}">{{ count($user->followings) }}</a>
+        </dt>
         <dd class="text-muted">关注</dd>
     </dl>
     <dl class="item px-30 border-left border-right">
-        <dt class="num">{{ count($user->followers) }}</dt>
+        <dt class="num">
+            <a href="{{ route('users.followers',$user->id) }}">{{ count($user->followers) }}</a>
+        </dt>
         <dd class="text-muted">粉丝</dd>
     </dl>
     <dl class="item px-30">
-        <dt class="num">{{ $user->statuses()->count() }}</dt>
+        <dt class="num">
+            <a href="{{ route('users.show',$user->id) }}">{{ $user->statuses()->count() }}</a>
+        </dt>
         <dd class="text-muted">微博</dd>
     </dl>
 </div>
