@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
 {
     public function home (){
-
         $feed_items = [];
         if (auth()->check()) {
-            // $feed_items = auth()->user()->feed()->paginate(30);
-            // $feed_items = auth()->user()->statuses()->orderBy('created_at','desc')->paginate(20);
-            $feed_items = auth()->user()->followings()->paginate(20);
+            // 首页显示自己与已关注的的所有微博
+            $feed_items = auth()->user()->feed()->paginate(20);
+        }else{
+            // 未登陆显示所有微博
+            $feed_items = Status::paginate(20);
+            // dd($feed_items);
         }
 
         return view('static_pages.home',compact('feed_items'));

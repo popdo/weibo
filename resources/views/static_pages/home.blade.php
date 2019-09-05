@@ -14,7 +14,9 @@
                         @include('statuses._status_loop', ['user' => $status->user])
                     @endforeach
                 </ul> 
-                {{ $feed_items->links() }}
+                <div class="pagintion mt-5">
+                    {{ $feed_items->links() }}
+                </div>
             @else
                 <p class="text-center mt-5">请开始你的表演……</p>
             @endif

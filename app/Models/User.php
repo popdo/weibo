@@ -58,8 +58,20 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Status');
     }
 
+    // 首页显示自己与已关注的的所有微博
+    // 该章节具体教程 https://learnku.com/courses/laravel-essential-training/5.8/dynamic-flow/4119
     public function feed(){
-        return $this->statuses()->orderBy('created_at', 'desc');
+        // 1、通过 followings 方法取出所有关注用户的信息，再借助 pluck 方法将 id 进行分离并赋值给 user_ids
+        $user_ids = $this->followings->pluck('id')->toArray();
+
+        // 2、将当前用户的 id 加入到 user_ids 数组中；
+        array_push($user_ids, $this->id);
+
+        // 3、使用 Laravel 提供的 查询构造器 whereIn 方法取出所有用户的微博动态并进行倒序排序；
+        return Status::whereIn('user_id', $user_ids)->with('user')->orderBy('created_at', 'desc');
+
+        // 使用了 Eloquent 关联的 预加载 with 方法，预加载避免了 N+1 查找的问题，大大提高了查询效率。N+1 问题
+
     }
 
 
