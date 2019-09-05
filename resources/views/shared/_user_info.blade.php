@@ -4,15 +4,15 @@
 <h2 class="mt-2 mb-5">{{ $user->name }}</h2>
 <div class="user_atten flex-xy-c mb-5">
     <dl class="item px-30">
-        <dt class="num">300</dt>
+        <dt class="num">{{ count($user->followings) }}</dt>
         <dd class="text-muted">关注</dd>
     </dl>
     <dl class="item px-30 border-left border-right">
-        <dt class="num">300</dt>
+        <dt class="num">{{ count($user->followers) }}</dt>
         <dd class="text-muted">粉丝</dd>
     </dl>
     <dl class="item px-30">
-        <dt class="num">300</dt>
+        <dt class="num">{{ $user->statuses()->count() }}</dt>
         <dd class="text-muted">微博</dd>
     </dl>
 </div>

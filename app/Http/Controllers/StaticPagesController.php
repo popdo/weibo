@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
 {
     public function home (){
+
         $feed_items = [];
         if (auth()->check()) {
             // $feed_items = auth()->user()->feed()->paginate(30);
